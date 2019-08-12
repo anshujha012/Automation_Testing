@@ -27,6 +27,7 @@ Feature: Sign In
    And Enter job location as "Canada"
    When click on search button
    Then It should rediredt to job listed page
+      Then It should rediredt to job listed page
 
 
 

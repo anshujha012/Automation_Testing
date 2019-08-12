@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Automation_Testing.iml" filepath="$PROJECT_DIR$/.idea/Automation_Testing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cucumberFramework/cucumberFramework.iml" filepath="$PROJECT_DIR$/cucumberFramework/cucumberFramework.iml" />
     </modules>
   </component>
 </project>
