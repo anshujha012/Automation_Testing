@@ -1,5 +1,6 @@
 package pageObjects;
 
+import helper.Constants;
 import helper.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,7 @@ public class LoginPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
-        //waitHelper.WaitForElement(userName, 60);
+        waitHelper.WaitForElement(userName, Constants.getExplicitwait());
     }
 
     public void enterUserName(String userName){

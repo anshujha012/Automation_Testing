@@ -10,7 +10,7 @@ import testBase.TestBase;
 public class loginPageStepDefinitions extends TestBase {
 
     LoginPage loginPage = new LoginPage(driver);
-    WaitHelper waitHelper;
+    WaitHelper waitHelper=new WaitHelper(driver);
 
     @Given("^I am on the Login page URL \"([^\"]*)\"$")
     public void i_am_on_the_Login_page_URL(String arg1) throws Throwable {

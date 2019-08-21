@@ -1,33 +1,32 @@
 package stepDefinations;
-import cucumber.api.java.en.Given;
+import beans.JobData;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import helper.LoggerHelper;
 import helper.WaitHelper;
+import org.testng.Assert;
 import pageObjects.Applyjob;
-import pageObjects.LoginPage;
+import pageObjects.JobVerification;
 import testBase.TestBase;
 
+import java.util.logging.Logger;
+
 public class ApplyjobStepDefination extends TestBase {
-    //LoginPage loginPage = new LoginPage(driver);
-    WaitHelper waitHelper;
-    Applyjob applyjob = new Applyjob();
 
-    @Given("^I am on home page$")
-    public void i_am_on_home_page() throws Throwable {
-        waitHelper.WaitForElement(applyjob.jobicon, 60);
-    }
-    @Then("^I click on jobs icon$")
-    public void i_click_on_jobs_icon() throws Throwable {
-        applyjob.clickjobsubmitbutton();
-    }
-
+    WaitHelper waitHelper=new WaitHelper(driver);
+    Applyjob applyjob = new Applyjob(driver);
+    JobVerification jobVerification= new JobVerification(driver);
+     org.apache.log4j.Logger log= LoggerHelper.getLogger(ApplyjobStepDefination.class);
     @When("^Enter job title as \"([^\"]*)\"$")
     public void enter_job_title_as(String arg1) throws Throwable {
-        applyjob.enterjobtitle(arg1);
+        JobData.setjobtitle(arg1);
+        applyjob.enteronjobtitle(arg1);
     }
 
     @When("^Enter job location as \"([^\"]*)\"$")
     public void enter_job_location_as(String arg1) throws Throwable {
+        JobData.setjobtitle(arg1);
         applyjob.enterjoblocation(arg1);
     }
 
@@ -35,9 +34,25 @@ public class ApplyjobStepDefination extends TestBase {
     public void click_on_serch_button() throws Throwable {
         applyjob.clickjobsubmitbutton();
     }
-
     @Then("^It should rediredt to job listed page$")
-    public void it_should_redirect_to_job_serch_page() throws Throwable {
-
+    public void It_should_redirect_to_job_listed_page() throws Throwable
+    {
+     log.info("job title is " + JobData.getJobtitle());
+        log.info("job location is " +JobData.getJoblocation());
+        if(jobVerification.getJobtitle().getText().contains(JobData.getJobtitle())&&jobVerification.getJobtitle().getText().contains(JobData.getJoblocation()))
+        {
+        }
+        else
+        {
+          Assert.assertTrue(false,"Applied job is invalid" +jobVerification.getJobtitle().getText() );
+        }
     }
+
+    @Then("^I should verify the job information$")
+    public void I_should_verify_the_job_information() throws Throwable
+    {
+        Assert.assertEquals(jobVerification.getJobtitle().getText(),JobData.getJobtitle());
+        Assert.assertEquals(jobVerification.getJoblocation().getText(),JobData.getJoblocation());
+    }
+
 }

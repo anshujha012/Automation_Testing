@@ -13,21 +13,11 @@ Feature: Sign In
     When I enter username as "sharmaanshu29081989@gmail.com"
     And I enter password as "anshu123"
     And click on login button
-    Then I sould see application homepage
-    And I must see my LinkidIn home page
-    When I click on logout button
-    Then I must be logged out from LinkindIn
+    Then I should see LinkidIn  homepage
+    And I should see Welcome text message on home page
 
 
-  @sanity
-  Scenario: job search
-   Given I am on home page
-   When I click on jobs icon
-   And Enter job title as "SDET"
-   And Enter job location as "Canada"
-   When click on search button
-   Then It should rediredt to job listed page
-      Then It should rediredt to job listed page
+
 
 
 
